@@ -1,0 +1,26 @@
+name: Add-on auto-update
+
+on:
+  push:
+    branches: [ "master" ]
+    paths:
+      - repository/*.zip
+
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Get modified add-ons
+        id: modified-addons
+        run: |
+          echo "::set-output name=list::$(for path in `git diff --name-only HEAD~1..HEAD repository/` ; do basename $path ; done)\n"
+
+      - name: List all modified add-ons
+        run: |
+          for file in ${{ steps.modified-addons.outputs.list }}; do
+            echo "$file was changed"
+          done
