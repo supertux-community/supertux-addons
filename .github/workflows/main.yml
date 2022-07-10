@@ -19,7 +19,7 @@ jobs:
       - name: Get modified add-ons
         id: modified-addons
         run: |
-          echo "::set-output name=list::$(for path in `git diff --name-only HEAD~1..HEAD repository/` ; do basename $path ; done)\n"
+          echo "::set-output name=list::$(for path in `git diff --name-only HEAD~1..HEAD -- repository/` ; do basename $path ; done)\n"
 
       - name: List all modified add-ons
         run: |
