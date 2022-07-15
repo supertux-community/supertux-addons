@@ -153,18 +153,18 @@
      (url "https://raw.githubusercontent.com/SuperTux/addons/4e4e23e01da309e10eacb32d7a24b19836807458/repository/serano-islands_remastered.zip")
      (md5 "18d58a1700590931ea7790402595e6d6")
     )
-
    (supertux-addoninfo
       (id "language-pack")
-      (version 1)
+      (version 2)
       (type "languagepack")
       (title "Localization Update Pack")
       (author "SuperTux Team")
       (license "GNU General Public License 3")
-      (url "https://raw.githubusercontent.com/SuperTux/addons/4e4e23e01da309e10eacb32d7a24b19836807458/repository/language-pack.zip")
-      (md5 "80de02550fe10fb9e8cd31828104398f")
+      (url "https://raw.githubusercontent.com/SuperTux/addons/989416e8fbb3e391f3690ce741a8767273d2c021/repository/language-pack.zip")
+      (md5 "29bf90a077f6802c5a46fcbf75209ea7")
     )
     (supertux-addoninfo
+
       (id "ATTNW1")
       (version 1)
       (type "worldmap")
