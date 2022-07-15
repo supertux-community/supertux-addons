@@ -9,20 +9,27 @@ on:
   workflow_dispatch:
 
 jobs:
-  build:
+  update:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
         with:
           fetch-depth: 2
 
+      - name: Get last commit
+        id: last-commit
+        run: |
+          echo "::set-output name=commit::$(git rev-parse HEAD)"
+
       - name: Get modified add-ons
         id: modified-addons
         run: |
-          echo "::set-output name=list::$(for path in `git diff --name-only HEAD~1..HEAD -- repository/` ; do basename $path ; done)\n"
+          echo "::set-output name=list::$(for path in `git diff --diff-filter=M --name-only HEAD~1..HEAD -- repository/` ; do basename $path ; done)"
 
-      - name: List all modified add-ons
+      - name: Run index file updater for each updated add-on
         run: |
+          chmod +x scripts/update_addon_index.sh
           for file in ${{ steps.modified-addons.outputs.list }}; do
-            echo "$file was changed"
+            echo "Executing script for modified add-on ${file}."
+            scripts/update_addon_index.sh -f $file -c ${{ steps.last-commit.outputs.commit }}
           done
