@@ -39,6 +39,6 @@ jobs:
           git --version
           git config --global user.email "supertux-addons"
           git config --global user.name "SuperTux Add-ons"
-          git add .
-          git commit -m "Update add-ons in the latest index file"
+          git add \*.nfo
+          git commit -m "Update add-ons in latest index file"
           git push
