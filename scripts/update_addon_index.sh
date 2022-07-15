@@ -17,8 +17,6 @@ done
 echo "Filename: $file_name";
 echo "Commit hash: $commit_hash";
 
-cd ../ #Go outside the "scripts/" directory.
-
 FILE=index-0_7.nfo #The latest index file where changes should be written to. Change if needed!
 
 echo "" #Empty line
