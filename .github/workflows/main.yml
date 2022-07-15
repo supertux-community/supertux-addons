@@ -33,3 +33,12 @@ jobs:
             echo "Executing script for modified add-on ${file}."
             scripts/update_addon_index.sh -f $file -c ${{ steps.last-commit.outputs.commit }}
           done
+
+      - name: Commit changes
+        run: |
+          git --version
+          git config --global user.email "supertux-addons"
+          git config --global user.name "SuperTux Add-ons"
+          git add .
+          git commit -m "Update add-ons in the latest index file"
+          git push
