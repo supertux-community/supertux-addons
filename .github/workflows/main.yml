@@ -24,7 +24,11 @@ jobs:
       - name: Get modified add-ons
         id: modified-addons
         run: |
-          echo "::set-output name=list::$(for path in `git diff --diff-filter=M --name-only HEAD~1..HEAD -- repository/` ; do basename $path ; done)"
+          modified_addons=$(for path in `git diff --diff-filter=M --name-only HEAD~1..HEAD -- repository/` ; do basename $path ; done)
+          modified_addons="${modified_addons//'%'/'%25'}"
+          modified_addons="${modified_addons//$'\n'/'%0A'}"
+          modified_addons="${modified_addons//$'\r'/'%0D'}"
+          echo "::set-output name=list::$modified_addons"
 
       - name: Run index file updater for each updated add-on
         run: |
